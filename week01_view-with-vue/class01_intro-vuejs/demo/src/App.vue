@@ -1,13 +1,20 @@
 <template>
   <div id="app">
-    <Pirates/>
+    <Pirates v-bind:pirates="pirates"/>
   </div>
 </template>
 
 <script>
-import Pirates from './components/Pirates.vue';
+import Pirates from './components/Pirates';
+import pirates from './pirate-data';
 
 export default {
+  data() {
+    return {
+      pirates,
+      selected: null
+    };
+  },
   components: {
     // Pirates: Pirates
     Pirates

@@ -1,5 +1,6 @@
 <template>
     <ul>
+        <pre>{{pirates}}</pre>
         <li>
             <h3>Monkey D Luffy the Captain</h3>
             <img src="https://upload.wikimedia.org/wikipedia/en/c/cb/Monkey_D_Luffy.png">
@@ -9,7 +10,9 @@
 
 <script>
 export default {
-
+    props: {
+        pirates: Array
+    }
 };
 </script>
 
