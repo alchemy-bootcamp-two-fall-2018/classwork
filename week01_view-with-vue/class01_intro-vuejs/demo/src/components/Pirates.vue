@@ -1,7 +1,8 @@
 <template>
     <ul>
         <li v-for="pirate in pirates"
-            v-bind:key="pirate.name">
+            v-bind:key="pirate.name"
+            v-on:click="onSelect(pirate)">
             <h3>{{pirate.name}} the {{pirate.role}}</h3>
             <img v-bind:src="pirate.image">
         </li>
@@ -11,7 +12,8 @@
 <script>
 export default {
     props: {
-        pirates: Array
+        pirates: Array,
+        onSelect: Function
     }
 };
 </script>
@@ -25,6 +27,7 @@ li {
     border: 1px solid #aaa;
     text-align: center;
     margin-right: 3px;
+    cursor: pointer;
 }
 
 h3 {
