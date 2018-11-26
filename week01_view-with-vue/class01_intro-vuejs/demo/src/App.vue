@@ -3,11 +3,14 @@
     <Pirates 
         v-bind:pirates="pirates"
         v-bind:onSelect="handleSelect"/>
+    <Player
+        v-bind:pirate="selected"/>
   </div>
 </template>
 
 <script>
 import Pirates from './components/Pirates';
+import Player from './components/Player';
 import pirates from './pirate-data';
 
 export default {
@@ -19,7 +22,8 @@ export default {
     },
     components: {
         // Pirates: Pirates
-        Pirates
+        Pirates,
+        Player
     },
     methods: {
         handleSelect(pirate) {
