@@ -1,9 +1,9 @@
 <template>
     <ul>
-        <pre>{{pirates}}</pre>
-        <li>
-            <h3>Monkey D Luffy the Captain</h3>
-            <img src="https://upload.wikimedia.org/wikipedia/en/c/cb/Monkey_D_Luffy.png">
+        <li v-for="pirate in pirates"
+            v-bind:key="pirate.name">
+            <h3>{{pirate.name}} the {{pirate.role}}</h3>
+            <img v-bind:src="pirate.image">
         </li>
     </ul>
 </template>
@@ -24,6 +24,7 @@ li {
     height: 200px;
     border: 1px solid #aaa;
     text-align: center;
+    margin-right: 3px;
 }
 
 h3 {
