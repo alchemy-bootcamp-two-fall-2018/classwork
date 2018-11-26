@@ -4,7 +4,40 @@ Class 01: Intro to VueJS
 ## Agenda
 
 * Welcome to Bootcamp II!
+* MVC
 * VueJS
+
+## Welcome!
+
+* Skills-based
+* Commits and incrementalism
+* Collaboration (Consultant's Mindset)
+
+### Apps
+
+* List
+* Details
+* Forms
+
+## MVC
+
+* Model
+* View
+* Controller
+
+## Modern JavaScript
+
+Extensive "Build Systems":
+
+1. Frontend
+    * `vue-cli`
+    * `webpack`
+    * Powered by `node`
+1. Backend
+    * ExpressJS
+    * SQL - RDMS (PostgreSql)
+    * Powered by `node`
+    * Deployed to heroku
 
 ## Bootcamp II
 
@@ -21,6 +54,8 @@ Let's check node.js is installed:
 > node --version
 ```
 
+Looking for version `10` or greater
+
 Two possible issues:
 
 1. Node not installed
@@ -30,22 +65,33 @@ Two possible issues:
 
 ### Up and Running
 
-* Install Vue CLI Tool
-    ```sh
-    > npm install -g @vue/cli
-    ```
-* Create Project
-    ```sh
-    > vue create my-project
-    ```
+#### Install Vue CLI Tool
+
+```sh
+> npm install -g @vue/cli
+```
+
+Issues: 
+
+* EACCESS or other permission problem
+* `npm` not found. Uh-oh! See Node path above
+
+
+#### Create Project
+
+```sh
+> vue create my-project
+```
 
 ### Review Template Project
 
 What can we learn?
 
-### Veteur Extention
+What else?
 
-* When Prompted
+* .eslintrc config
+* Veteur Extention (VSCode should prompt)
+* `.vue` files
 
 ### ESLint
 
@@ -53,7 +99,6 @@ What can we learn?
 * ~~Choose "errors only"~~
 * Copy in `.eslintrc` file
 * Add `/* eslint-env node */` to top of `babel.config.js`
-
 
 ## Intro to Vue.js
 
