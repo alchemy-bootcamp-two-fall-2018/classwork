@@ -2,6 +2,7 @@
   <div id="app">
     <Pirates 
         v-bind:pirates="pirates"
+        v-bind:selected="selected"
         v-bind:onSelect="handleSelect"/>
     <Player
         v-bind:pirate="selected"/>
@@ -27,7 +28,7 @@ export default {
     },
     methods: {
         handleSelect(pirate) {
-            console.log('user selected pirate', pirate.name);
+            this.selected = pirate;
         }
     }
 };
