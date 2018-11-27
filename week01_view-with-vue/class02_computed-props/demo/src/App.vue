@@ -16,7 +16,9 @@ export default {
     return {
       animals: animalsApi.getAnimals(),
       filter: {
-        weight: 0
+        weight: 0,
+        type: '',
+        isPet: false
       }
     };
   },
@@ -27,7 +29,10 @@ export default {
   computed: {
     filteredAnimals() {
       return this.animals.filter(animal => {
-        return animal.weight > this.filter.weight;
+        const hasWeight = !this.filter.weight || animal.weight >= this.filter.weight;
+        const hasType = !this.filter.type || animal.type === this.filter.type;
+        const isPet = !this.filter.isPet || animal.isPet;
+        return hasWeight && hasType && isPet;
       });
     }
   }
