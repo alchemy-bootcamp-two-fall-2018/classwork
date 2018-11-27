@@ -1,10 +1,11 @@
 <template>
   <div id="app">
     <Header 
+      v-bind:sort="sort" 
       v-bind:filter="filter" 
       v-bind:types="animalTypes"/>
-    {{filter}}
-    <Animals v-bind:animals="filteredAnimals"/>
+
+    <Animals v-bind:animals="sortedAnimals"/>
   </div>
 </template>
 
@@ -22,6 +23,10 @@ export default {
         weight: 0,
         type: '',
         isPet: false
+      },
+      sort: {
+        field: 'name',
+        direction: 1
       }
     };
   },
@@ -45,6 +50,22 @@ export default {
         const hasType = !this.filter.type || animal.type === this.filter.type;
         const isPet = !this.filter.isPet || animal.isPet;
         return hasWeight && hasType && isPet;
+      });
+    },
+    sortedAnimals() {
+      const field = this.sort.field;
+      const direction = this.sort.direction;
+
+      return this.filteredAnimals.slice().sort((a, b) => {
+        if(a[field] > b[field]) {
+          return 1 * direction;
+        }
+
+        if(a[field] < b[field]) {
+          return -1 * direction;
+        }
+
+        return 0;
       });
     }
   }

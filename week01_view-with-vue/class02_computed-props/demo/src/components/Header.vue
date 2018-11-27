@@ -25,6 +25,19 @@
       IsPet:
       <input type="checkbox" v-model="filter.isPet">
     </label>
+
+    <label>
+      Sort By:
+      <select v-model="sort.field">
+        <option value="name">Name</option>
+        <option value="type">Type</option>
+        <option value="weight">Weight</option>
+      </select>
+      <select v-model="sort.direction">
+        <option value="1">Asc</option>
+        <option value="-1">Desc</option>
+      </select>
+    </label>
   </header>
 </template>
 
@@ -39,7 +52,8 @@ export default {
   // },
   props: {
     filter: Object,
-    types: Array
+    types: Array,
+    sort: String
   }
 };
 </script>
