@@ -53,7 +53,7 @@ export default {
   props: {
     filter: Object,
     types: Array,
-    sort: String
+    sort: Object
   }
 };
 </script>
