@@ -29,16 +29,17 @@
 </template>
 
 <script>
-import animalsApi from '../services/animalsApi';
+// import animalsApi from '../services/animalsApi';
 
 export default {
-  data() {
-    return {
-      types: animalsApi.getTypes()
-    };
-  },
+  // data() {
+  //   return {
+  //     types: animalsApi.getTypes()
+  //   };
+  // },
   props: {
-    filter: Object
+    filter: Object,
+    types: Array
   }
 };
 </script>

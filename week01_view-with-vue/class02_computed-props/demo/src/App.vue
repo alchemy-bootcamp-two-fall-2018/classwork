@@ -1,6 +1,8 @@
 <template>
   <div id="app">
-    <Header v-bind:filter="filter"/>
+    <Header 
+      v-bind:filter="filter" 
+      v-bind:types="animalTypes"/>
     {{filter}}
     <Animals v-bind:animals="filteredAnimals"/>
   </div>
@@ -15,6 +17,7 @@ export default {
   data() {
     return {
       animals: animalsApi.getAnimals(),
+      // types: animalsApi.getTypes(),
       filter: {
         weight: 0,
         type: '',
@@ -27,6 +30,15 @@ export default {
     Animals
   },
   computed: {
+    animalTypes() {
+      const types = [];
+      this.animals.forEach(animal => {
+        if(!types.includes(animal.type)) {
+          types.push(animal.type);
+        }
+      });
+      return types;
+    },
     filteredAnimals() {
       return this.animals.filter(animal => {
         const hasWeight = !this.filter.weight || animal.weight >= this.filter.weight;
