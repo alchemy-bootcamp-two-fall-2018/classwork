@@ -7,14 +7,11 @@
 </template>
 
 <script>
-import animalsApi from '../services/animalsApi';
 import Animal from './Animal.vue';
 
 export default {
-  data() {
-    return {
-      animals: animalsApi.getAnimals()
-    };
+  props: {
+    animals: Array
   },
   components: {
     Animal

@@ -1,18 +1,38 @@
 <template>
   <div id="app">
-    <Animals />
+    <Header v-bind:filter="filter"/>
+    {{filter}}
+    <Animals v-bind:animals="filteredAnimals"/>
   </div>
 </template>
 
 <script>
-import Animals from './components/Animals.vue'
+import animalsApi from './services/animalsApi';
+import Animals from './components/Animals.vue';
+import Header from './components/Header.vue';
 
 export default {
-  name: 'app',
+  data() {
+    return {
+      animals: animalsApi.getAnimals(),
+      filter: {
+        weight: 0
+      }
+    };
+  },
   components: {
+    Header,
     Animals
+  },
+  computed: {
+    filteredAnimals() {
+      return this.animals.filter(animal => {
+        return animal.weight > this.filter.weight;
+      });
+    }
   }
-}
+};
+
 </script>
 
 <style>

@@ -36,7 +36,7 @@ img {
   bottom: 0;
   width: 100%;
   background: rgba(255, 255, 255, 0.8);
- 
+  text-align: center;
 }
 h3, p {
   margin: 0;
