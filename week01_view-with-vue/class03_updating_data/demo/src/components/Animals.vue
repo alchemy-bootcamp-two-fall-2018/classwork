@@ -23,9 +23,11 @@ export default {
 
 ul {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   list-style-type: none;
   margin: 0;
   padding: 0;
+  max-height: 50vh;
+  overflow-y: auto;
 }
 </style>

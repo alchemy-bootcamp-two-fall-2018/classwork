@@ -20,7 +20,7 @@ export default {
 <style scoped lang="postcss">
 li {
   position: relative;
-  height: 400px;
+  height: 150px;
   overflow: hidden;
   &:hover {
     img {
