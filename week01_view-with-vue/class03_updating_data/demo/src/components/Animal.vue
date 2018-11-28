@@ -18,9 +18,11 @@ export default {
 </script>
 
 <style scoped lang="postcss">
+@import '../styles.css';
+
 li {
   position: relative;
-  height: 400px;
+  height: $card-size;
   overflow: hidden;
   &:hover {
     img {
