@@ -1,4 +1,4 @@
-Class 03: Updating Data
+Class 03: Updating Data and Nicer CSS
 ===
 
 ## Misc
