@@ -39,7 +39,17 @@ export default {
       this.edit = false;
       this.onEdit(this.animal, updatedAnimal);
     }
+  },
+  watch: {
+    // set up a watch on the animal prop
+    animal(old, updated) {
+      // if it changes, toggle edit off!
+      if(old !== updated) {
+        this.edit = false;
+      }
+    }
   }
+
 };
 </script>
 
