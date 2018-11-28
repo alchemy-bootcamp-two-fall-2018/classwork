@@ -97,7 +97,7 @@ export default {
     handleEdit(old, animal) {
       const index = this.animals.indexOf(old);
       this.animals.splice(index, 1, animal);
-      this.handleSelecT(animal);
+      this.handleSelect(animal);
     }
   }
 };
