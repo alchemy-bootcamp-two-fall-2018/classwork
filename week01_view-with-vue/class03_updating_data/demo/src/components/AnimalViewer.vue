@@ -7,6 +7,9 @@
     <p>This is a {{animal.size}} {{animal.type}} 
       typically weighing {{animal.weight}}kg.
     </p>
+    <p v-if="animal.isPet">
+      The {{animal.name}} makes a lovely pet.
+    </p>
     <p>
       <img :src="animal.img">
     </p>
