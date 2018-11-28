@@ -92,11 +92,12 @@ export default {
     },
     handleAdd(animal) {
       this.animals.push(animal);
+      this.handleSelect(animal);
     },
     handleEdit(old, animal) {
       const index = this.animals.indexOf(old);
       this.animals.splice(index, 1, animal);
-      this.selected = animal;
+      this.handleSelecT(animal);
     }
   }
 };

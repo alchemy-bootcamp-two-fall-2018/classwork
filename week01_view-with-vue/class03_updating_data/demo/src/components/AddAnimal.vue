@@ -1,7 +1,7 @@
 <template>
   <section>
     <div v-if="!show">
-      <button @click="show = true">Click to Add an Animal</button>
+      <button @click="show = true">Add an Animal</button>
     </div>
     <div v-else>
       <h2>Add a new Animal</h2>
