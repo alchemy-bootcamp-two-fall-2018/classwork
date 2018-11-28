@@ -5,13 +5,11 @@ module.exports = {
       postcss: {
         plugins:
           [
+            require('postcss-simple-vars')(),
             require('autoprefixer')(),
-            require('postcss-nested')(),
-            require('postcss-simple-vars')()
+            require('postcss-nested')()
           ],
       } 
     }
   }
 };
-
-// npm -i postcss-cli postcss-loader postcss-nested postcss-simple-vars

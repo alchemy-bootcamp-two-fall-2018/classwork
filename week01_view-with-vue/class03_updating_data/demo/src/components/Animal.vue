@@ -17,11 +17,22 @@ export default {
 };
 </script>
 
-<style scoped>
+<style scoped lang="postcss">
 li {
   position: relative;
-  height: 300px;
+  height: 400px;
+  overflow: hidden;
+  &:hover {
+    img {
+      transform: scale(1.3);
+      filter: grayscale(0);
+    }
+    .info {
+      bottom: 0;
+    }
+  }
 }
+
 img {
   position: absolute;
   top: 0;
@@ -30,15 +41,20 @@ img {
   height: 100%;
   z-index: -1;
   object-fit: cover;
+  transition: 500ms;
+  filter: grayscale(1);
 }
 .info {
+  transition: 500ms;
   position: absolute;
-  bottom: 0;
+  bottom: -100px;
   width: 100%;
   background: rgba(255, 255, 255, 0.8);
   text-align: center;
+  padding: 5px;
 }
 h3, p {
   margin: 0;
 }
+
 </style>
