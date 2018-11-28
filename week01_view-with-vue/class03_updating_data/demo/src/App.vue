@@ -1,18 +1,32 @@
 <template>
   <div id="app">
     <Header 
-      v-bind:sort="sort" 
-      v-bind:filter="filter" 
-      v-bind:types="animalTypes"/>
+      :sort="sort" 
+      :filter="filter" 
+      :types="animalTypes"/>
 
-    <Animals v-bind:animals="sortedAnimals"/>
+    <AddAnimal 
+      :onAdd="handleAdd"
+      :animalTypes="animalTypes"/>
+
+    <Animals 
+      :animals="sortedAnimals" 
+      :onSelect="handleSelect"/>
+
+    <AnimalDetail 
+      :animal="selected"
+      :animalTypes="animalTypes"
+      :onEdit="handleEdit"/>
+
   </div>
 </template>
 
 <script>
 import animalsApi from './services/animalsApi';
-import Animals from './components/Animals.vue';
 import Header from './components/Header.vue';
+import Animals from './components/Animals.vue';
+import AnimalDetail from './components/AnimalDetail.vue';
+import AddAnimal from './components/AddAnimal.vue';
 
 export default {
   data() {
@@ -27,12 +41,15 @@ export default {
       sort: {
         field: 'name',
         direction: 1
-      }
+      },
+      selected: null
     };
   },
   components: {
     Header,
-    Animals
+    Animals,
+    AnimalDetail,
+    AddAnimal
   },
   computed: {
     animalTypes() {
@@ -67,6 +84,19 @@ export default {
 
         return 0;
       });
+    }
+  },
+  methods: {
+    handleSelect(animal) {
+      this.selected = animal;
+    },
+    handleAdd(animal) {
+      this.animals.push(animal);
+    },
+    handleEdit(old, animal) {
+      const index = this.animals.indexOf(old);
+      this.animals.splice(index, 1, animal);
+      this.selected = animal;
     }
   }
 };

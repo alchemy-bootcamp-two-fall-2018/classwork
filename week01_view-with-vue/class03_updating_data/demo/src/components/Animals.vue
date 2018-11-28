@@ -1,8 +1,9 @@
 <template>
   <ul>
     <Animal v-for="animal in animals"
-      v-bind:key="animal.name"
-      v-bind:animal="animal"/>
+      @click.native="onSelect(animal)"
+      :key="animal.name"
+      :animal="animal"/>
   </ul>
 </template>
 
@@ -11,7 +12,8 @@ import Animal from './Animal.vue';
 
 export default {
   props: {
-    animals: Array
+    animals: Array,
+    onSelect: Function
   },
   components: {
     Animal

@@ -5,7 +5,12 @@ const animals = [
     isPet: true,
     type: 'mammal',
     weight: 5,
-    img: '/images/cat.jpg'
+    img: '/images/cat.jpg',
+    description: `
+      <p>What a <strong>nice</strong> pet, 
+      unless you are Jordan (then go get a puppy).
+      </p>
+    `
   },
   {
     name: 'rat',
