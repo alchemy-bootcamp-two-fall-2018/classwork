@@ -1,11 +1,12 @@
-Class 03: Updating Data
+Class 03: Updating Data and Nicer CSS
 ===
 
-## Misc
+## Agenda
 
 * Lab Review
 * Code Kata Review
-* ?
+* Nice CSS
+* Updating Data
 
 ## Build
 
