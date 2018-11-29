@@ -31,6 +31,7 @@ export default {
   },
   methods: {
     handleAdd(animal) {
+      console.log(animal);
       this.show = false;
       this.onAdd(animal);
     }

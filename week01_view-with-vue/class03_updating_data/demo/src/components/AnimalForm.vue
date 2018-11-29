@@ -33,6 +33,10 @@
       <input v-model="animal.img" required>
     </label>
     <label>
+      <span>Birthday</span>
+      <Datepicker v-model="animal.dob"/>
+    </label>
+    <label>
       <span>Description:</span>
       <textarea v-model.trim="animal.description"></textarea>
     </label>
@@ -45,6 +49,8 @@
 </template>
 
 <script>
+import Datepicker from 'vuejs-datepicker';
+
 export default {
   data() {
     // we can access props in our data function
@@ -57,15 +63,30 @@ export default {
         type: update.type || '',
         weight: update.weight || 0,
         img: update.img || '',
+        dob: update.dob || null,
         description: update.description || ''
       }
     };
+  },
+  components: {
+    Datepicker
   },
   props: {
     animalTypes: Array,
     onAdd: Function,
     onCancel: Function,
     animalToUpdate: Object
+  },
+  computed: {
+    date: {
+      get() {
+        if(!this.animal.dob) return '';
+        return this.animal.dob.toISOString().split('T')[0];
+      },
+      set(value) {
+        this.animal.dob = new Date(value + 'T00:00:00.000');
+      }
+    } 
   }
 };
 </script>
