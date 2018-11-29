@@ -1,13 +1,20 @@
 <template>
-  <main>
-    Hello World
-  </main>
+  <div>
+    <Header/>
+    <main>
+      Hello World
+      <RouterView></RouterView>
+    </main>
+  </div>
 </template>
 
 <script>
+import Header from './Header';
 
 export default {
-  
+  components: {
+    Header
+  }
 };
 
 </script>
