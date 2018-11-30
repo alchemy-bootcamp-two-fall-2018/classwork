@@ -1,19 +1,15 @@
 import shortid from 'shortid';
+import albumData from './albumData';
 
-const albums = [
-  { 
-    id: shortid.generate(), 
-    title: 'Cute Bunnies', 
-    images: [
-      { 
-        title: 'so cute', 
-        url: 'https://static.boredpanda.com/blog/wp-content/uploads/2015/09/cute-bunnies-102__605.jpg' 
-      }
-    ] 
-  },
-  { id: shortid.generate(), title: 'Cute Kittens', images: [] },
-  { id: shortid.generate(), title: 'Cute Puppies', images: [] },
-];
+// check if we saved something to local storage
+const json = window.localStorage.getItem('albums');
+
+// if found, use it - otherwise use the seed data
+const albums = json ? JSON.parse(json) : albumData;
+
+function save() {
+  window.localStorage.setItem('albums', albums);
+}
 
 export default {
   getAlbums() {
@@ -26,6 +22,7 @@ export default {
     album.id = shortid.generate();
     album.images = [];
     albums.push(album);
+    save();
     return album;
   }
 };
