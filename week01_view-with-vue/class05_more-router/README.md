@@ -1,11 +1,12 @@
 Router
 ===
 
-## Misc
+## Agenda
 
 * Kata Review
 * Lab Review
 * Vue Questions
+* Laptop Policy
 
 ## Child Routes
 
