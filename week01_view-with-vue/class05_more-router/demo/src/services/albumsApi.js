@@ -16,7 +16,7 @@ else {
 }
 
 function save() {
-  window.localStorage.setItem('albums', albums);
+  window.localStorage.setItem('albums', JSON.stringify(albums));
 }
 
 export default {
