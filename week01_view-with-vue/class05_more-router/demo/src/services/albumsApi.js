@@ -5,7 +5,15 @@ import albumData from './albumData';
 const json = window.localStorage.getItem('albums');
 
 // if found, use it - otherwise use the seed data
-const albums = json ? JSON.parse(json) : albumData;
+let albums = null;
+
+if(json) {
+  albums = JSON.parse(json);
+}
+else {
+  albums = albumData;
+  save();
+}
 
 function save() {
   window.localStorage.setItem('albums', albums);
