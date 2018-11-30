@@ -33,3 +33,5 @@ Router
 * Content structure where we want to vary not data, but html
 * Form Control
 * Third Party Component "API"
+
+`<slot></slot>`
