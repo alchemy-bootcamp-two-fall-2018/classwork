@@ -24,6 +24,6 @@ export default {
       this.$router.push(`/albums/${saved.id}`);
     }
   }
-}
+};
 </script>
 

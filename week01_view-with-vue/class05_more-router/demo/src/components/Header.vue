@@ -4,6 +4,7 @@
       <RouterLink to="/">Home</RouterLink>
       <RouterLink to="/albums">Albums</RouterLink>
     </nav>
+    <RouterView name="special"></RouterView>
   </header>
 </template>
 

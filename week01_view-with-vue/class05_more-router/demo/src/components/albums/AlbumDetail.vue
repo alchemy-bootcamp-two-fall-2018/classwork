@@ -5,19 +5,24 @@
     <p>
       <button @click="showModal = true">Add a new Image</button>
     </p>
-    <div v-if="showModal" class="modal">
-      <div class="content">
-        I am the form
-        <button @click="showModal = false">Close</button>
-      </div>
-    </div>
-    <Thumbnails :images="album.images"/>
+    <Modal v-if="showModal" :onClose="() => showModal = false">
+      <AddImage :onAdd="handleImageAdd"/>
+    </Modal>
+    <nav>
+      <RouterLink to="./thumbnail">Thumbnail</RouterLink>
+      <RouterLink to="./list">List</RouterLink>
+      <RouterLink to="./gallery">Gallery</RouterLink>
+    </nav>
+
+    <RouterView :images="album.images">DEFAULT VIEW</RouterView>
+
   </section>
 </template>
 
 <script>
 import albumsApi from '../../services/albumsApi';
-import Thumbnails from './Thumbnails';
+import Modal from '../shared/Modal';
+import AddImage from './images/AddImage';
 
 export default {
   data() {
@@ -27,10 +32,19 @@ export default {
     };
   },
   components: {
-    Thumbnails
+    Modal,
+    AddImage
   },
   created() {
     this.album = albumsApi.getAlbum(this.$route.params.id);
+    if(!this.album) {
+      this.$router.push('/albums');
+    }
+  },
+  methods: {
+    handleImageAdd(image) {
+      console.log('AddImage hosted in Model sez', image);
+    }
   }
 };
 </script>
@@ -52,5 +66,10 @@ export default {
   background: white;
   padding: 40px;
 }
+
+nav a {
+  padding: 5px;
+}
+
 
 </style>
