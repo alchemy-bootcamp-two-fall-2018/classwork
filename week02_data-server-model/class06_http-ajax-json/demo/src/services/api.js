@@ -12,7 +12,7 @@
 
 export default {
   // default parameter, will be empty string if nothing provided
-  getPeople(searchTerm = '') {
+  getPeople(searchTerm = '', page = 1) {
     
     if(searchTerm.startsWith('jar')) {
       return Promise.reject(new Error('meesa think that bad search'));
@@ -22,7 +22,7 @@ export default {
     // return promise-chain so caller gets final output
 
     // fetch takes: url, [options]
-    return fetch(`https://swapi.co/api/people?search=${encodeURIComponent(searchTerm)}`)
+    return fetch(`https://swapi.co/api/people?search=${encodeURIComponent(searchTerm)}&page=${page}`)
       // when the response from the server is received,
       // this callback will be invoked:
       .then(response => response.json());

@@ -1,6 +1,8 @@
 <template>
   <li>
-    {{person.name}} born {{person.birth_year}}
+    <RouterLink :to="`/people/${person.id}`" >
+      {{person.name}} born {{person.birth_year}}
+    </RouterLink>
   </li>
 </template>
 

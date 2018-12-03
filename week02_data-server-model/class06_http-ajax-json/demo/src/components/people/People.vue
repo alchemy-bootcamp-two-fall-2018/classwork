@@ -6,7 +6,11 @@
     
     <Loader :loading="loading"/>
 
-    <p v-if="search">Searching for &quot;{{ search }}&quot;</p>
+    <p>
+      <button @click="handlePage(-1)" :disabled="page === 1">Prev</button>
+      Searching for &quot;{{ search }}&quot; - found {{total}} - page {{page}} of {{totalPages}}
+      <button @click="handlePage(1)" :disabled="totalPages === page">Next</button>
+    </p>
      
     <pre v-show="error" class="error">
       {{error}}
@@ -38,7 +42,9 @@ export default {
       loading: false,
       error: null,
       search: decodeURIComponent(this.$route.query.search),
-      total: 0
+      page: decodeURIComponent(this.$route.query.page) || 1,
+      total: 0,
+      perPage: 10
     };
   },
   components: {
@@ -49,27 +55,53 @@ export default {
   created() {
     this.searchPeople();
   },
+  computed: {
+    totalPages() {
+      return Math.ceil(this.total / this.perPage);
+    }
+  },
   watch: {
     $route(newRoute, oldRoute) {
       const newSearch = newRoute.query.search;
       const oldSearch = oldRoute.query.search;
-      if(newSearch === oldSearch) return;
-      
-      this.handleSearch(decodeURIComponent(newSearch));
+      let newPage = newRoute.query.page;
+      const oldPage = oldRoute.query.page;
+      if(newSearch === oldSearch && newPage === oldPage) return;
+      if(newSearch !== oldSearch) {
+        newPage = 1;
+      }
+      this.search = decodeURIComponent(newSearch);
+      this.page = newPage;
+      this.searchPeople();
     }
   },
   methods: {
     handleSearch(search) {
       this.search = search || '';
+      this.page = 1;
+      this.recordPage();
       this.searchPeople();
+    },
+    handlePage(increment) {
+      this.page += increment;
+      this.recordPage();
+    },
+    recordPage() {
+      this.$router.push({
+        query: {
+          search: encodeURIComponent(this.search),
+          page: this.page
+        }
+      });
     },
     searchPeople() {
       this.loading = true;
       this.error = null;
 
-      api.getPeople(this.search)
+      api.getPeople(this.search, this.page)
         .then(response => {
           this.people = response.results;
+          this.total = response.count;
           this.loading = false;
         })
         .catch(err => {
