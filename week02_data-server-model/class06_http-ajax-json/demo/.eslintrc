@@ -12,6 +12,9 @@
     "browser": true,
     "es6": true
   },
+  "globals": {
+    "process": false
+  },
   "rules": {
     "eqeqeq": ["error", "always"],
     "no-console": "off",

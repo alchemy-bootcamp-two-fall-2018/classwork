@@ -10,6 +10,9 @@
 
 // `https://swapi.co/api/people?search=${encodeURIComponent(searchTerm)}`)
 
+// example of accessing `.env` variable
+console.log(process.env.VUE_APP_SEKRIT);
+
 export default {
   // default parameter, will be empty string if nothing provided
   getPeople(searchTerm = '', page = 1) {
