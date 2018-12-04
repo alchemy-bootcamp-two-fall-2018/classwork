@@ -6,14 +6,14 @@
   "parserOptions": {
     "parser": "babel-eslint",
     "ecmaVersion": 8,
-    "ecmaFeatures": {
-      "impliedStrict": true
-    },
     "sourceType": "module"
   },
   "env": {
     "browser": true,
     "es6": true
+  },
+  "globals": {
+    "process": false
   },
   "rules": {
     "eqeqeq": ["error", "always"],
@@ -49,7 +49,8 @@
           "for": { "after": false },
           "while": { "after": false },
           "do": { "after": false },
-          "switch": { "after": false }
+          "switch": { "after": false },
+          "catch": { "after": false }
         } 
       }
     ],

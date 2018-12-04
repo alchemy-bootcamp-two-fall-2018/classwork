@@ -74,7 +74,7 @@ project
 `nodemon` is an npm package that will auto-restart your server when you update your code
 
 ```sh
-npm i -g nodemon
+npm i nodemon
 ```
 
 ## CJS Modules
@@ -84,6 +84,10 @@ const imported = require('path');
 ```
 
 ## ExpressJS
+
+```sh
+npm i express
+```
 
 Code demo: Let's make a Node-powered server!
 
