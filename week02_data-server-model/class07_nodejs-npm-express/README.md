@@ -3,8 +3,9 @@ NodeJS, NPM, ExpressJS
 
 ## Questions, Issues, Review
 
-* HTML Linter
-* ?
+* Kata
+* Lab
+* Environment Variables
 
 ## Learning Objectives
 
