@@ -6,6 +6,24 @@ NodeJS, NPM, ExpressJS
 * Kata
 * Lab
 * Environment Variables
+  1. Add/ensure `.env` listed in `.gitignore`
+  1. Create `.env` file at root of repo
+  1. Add bash style key value pairs, prefixed with `VUE_APP`:
+      ```sh
+      VUE_APP_NEWS_API_KEY=23ere32224
+      ```
+  1. Add `process` globals to `.eslintrc`:
+      ```json
+        "globals": {
+          "process": false
+        },
+      ```
+  1. Use in your code as: `process.env.VUE_APP_NEWS_API_KEY`
+
+## Class
+
+* One student dropped due to illness
+* Grade review
 
 ## Learning Objectives
 

@@ -10,7 +10,7 @@
 
 // `https://swapi.co/api/people?search=${encodeURIComponent(searchTerm)}`)
 
-// example of accessing `.env` variable
+// example of accessing `.env` variable no-undef
 console.log(process.env.VUE_APP_SEKRIT);
 
 export default {
