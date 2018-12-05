@@ -5,6 +5,10 @@
       <input v-model="student.name" require>
     </p>
     <p>
+      <label>Description:</label>
+      <textarea v-model="student.description"></textarea>
+    </p>
+    <p>
       <label>Start Date:</label>
       <input type="date" 
         v-model="student.startDate" 
@@ -33,17 +37,22 @@
 <script>
 import api from '../../services/api';
 
+const initStudent = () => {
+  return {
+    name: '',
+    startDate: '',
+    track: 'js',
+    description: ''
+  };
+};
+
 export default {
   props: {
     onAdd: Function
   },
   data() {
     return {
-      student: {
-        name: '',
-        startDate: '',
-        track: 'js'
-      },
+      student: initStudent(),
       tracks: null
     };
   },
@@ -54,7 +63,7 @@ export default {
     handleSubmit() {
       this.onAdd(this.student)
         .then(() => {
-          this.student = { name: '' };
+          this.student = initStudent();
         });
     }
   }
@@ -64,8 +73,7 @@ export default {
 <style lang="postcss" scoped>
 
 label {
-  display: inline-block;
-  width: 60px;
+  display: block;
 }
 
 input, select {
