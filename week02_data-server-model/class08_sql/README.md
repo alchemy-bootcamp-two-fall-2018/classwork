@@ -1,9 +1,20 @@
 Class 08: SQL & Postgres
 ===
 
-## Schedule
+## Agenda
+1. Kata Review
+1. Lab Review
+1. Questions?
 1. CRUD and SQL
 1. Lab Prep
+
+## BONUS!
+
+Install `morgan` middleware for improved server logging!
+
+```js
+app.use(morgan('dev'));
+```
 
 ## Learning Objectives
 
@@ -55,3 +66,5 @@ The language we use to query and update our database
 
 * [SQLBolt (Intro, Lessons 1-4, 13-18)](http://sqlbolt.com/)
 * [A Primer on SQL](https://leanpub.com/aprimeronsql/read) (Reference)
+
+
