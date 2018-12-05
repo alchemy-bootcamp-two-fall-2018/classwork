@@ -1,3 +1,4 @@
+const fs = require('fs');
 // "require" pg
 const pg = require('pg');
 // Use the pg Client
@@ -13,11 +14,17 @@ const client = new Client(databaseUrl);
 client.connect();
 
 client.query(`
-  SELECT * FROM students;
+  SELECT name, description, track, start_date FROM students;
 `)
-  .then(results => {
-    console.log(results.rows);
-  })
-  .catch(err => {
-    console.log(err);
+  .then(
+    results => {
+      fs.writeFileSync(
+        'student.json', 
+        JSON.stringify(results.rows, true, 2)
+      );
+    },
+    err => console.log(err)
+  )
+  .then(() => {
+    client.end();
   });
