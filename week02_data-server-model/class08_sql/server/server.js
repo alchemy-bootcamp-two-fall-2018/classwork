@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const shortid = require('shortid');
+const morgan = require('morgan');
 
 /* This code is our very very simple database */
 
@@ -19,8 +20,12 @@ function saveData(students) {
 }
 /* end database stuff */
 
+// enhanced logging
+app.use(morgan('dev'));
+
 // register the json "middleware" body parser
 app.use(express.json());
+
 
 /* Defined routes: METHOD, URL PATH */
 
