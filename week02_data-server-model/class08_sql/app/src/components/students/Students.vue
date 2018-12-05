@@ -1,20 +1,15 @@
 <template>
   <section class="students">
     <h2>Students</h2>
-    
     <AddStudent :onAdd="handleAdd"/>
-
-    <ul v-if="students">
-      <li v-for="student in students" :key="student.id">
-        {{student.name}}
-      </li>
-    </ul>
+    <StudentList :students="students"/>
   </section>
 </template>
 
 <script>
 import api from '../../services/api';
 import AddStudent from './AddStudent';
+import StudentList from './StudentList';
 
 export default {
   data() {
@@ -24,7 +19,8 @@ export default {
     };
   },
   components: {
-    AddStudent
+    AddStudent,
+    StudentList
   },
   created() {
     api.getStudents()

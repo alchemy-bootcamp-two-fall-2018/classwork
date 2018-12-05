@@ -16,5 +16,14 @@ export default {
       body: JSON.stringify(student)
     })
       .then(response => response.json());
+  },
+
+  getTracks() {
+    return {
+      js: 'JavaScript',
+      python: 'Python',
+      go: 'Go',
+      rust: 'Rust'
+    };
   }
 };
