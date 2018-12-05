@@ -1,9 +1,9 @@
-// "require" pg
+// "require" pg (after `npm i pg`)
 const pg = require('pg');
 // Use the pg Client
 const Client = pg.Client;
 // database url
-const databaseUrl = 'postgres://localhost:5432/your_db';
+const databaseUrl = 'postgres://localhost:5432/school';
 // on windows, linux, or other systems where you need to 
 // specify username and password
 // const databaseUrl = 'postgres://<username>:<password>@localhost:5432/liveable_cities';
@@ -16,10 +16,9 @@ client.connect()
       CREATE TABLE IF NOT EXISTS students (
         id SERIAL PRIMARY KEY,
         name VARCHAR(256) NOT NULL,
-        city VARCHAR(256),
-        population INTEGER NOT NULL,
-        founded INTEGER,
-        description VARCHAR(1024)
+        description VARCHAR(256),
+        track VARCHAR(256),
+        start_date DATE
       );
     `);
   })
