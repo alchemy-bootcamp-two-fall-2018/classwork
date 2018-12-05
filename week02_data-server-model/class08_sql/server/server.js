@@ -1,24 +1,7 @@
 const express = require('express');
 const app = express();
-const shortid = require('shortid');
 const morgan = require('morgan');
-
-/* This code is our very very simple database */
-
-const fs = require('fs');
-const filePath = './scripts/students.json';
-
-function readData() {
-  // we don't normally use sync, but fine for today
-  const data = fs.readFileSync(filePath, 'utf8');
-  return JSON.parse(data);
-}
-
-function saveData(students) {
-  const json = JSON.stringify(students, true, 2);
-  fs.writeFileSync(filePath, json);
-}
-/* end database stuff */
+const pg = require('pg');
 
 // enhanced logging
 app.use(morgan('dev'));
@@ -26,39 +9,44 @@ app.use(morgan('dev'));
 // register the json "middleware" body parser
 app.use(express.json());
 
+/* Connect to pg */
+const Client = pg.Client;
+const dbUrl = 'postgres://localhost:5432/school';
+const client = new Client(dbUrl);
+client.connect();
+/* end connect pg */
+
 
 /* Defined routes: METHOD, URL PATH */
 
 // method == app.<method>
 // path = app.get('/this/is/path', ...)
 app.get('/api/students', (req, res) => {
-  const students = readData();
+  // TODO: reimplement queries
+  // // do we have a name query param?
+  // if(req.query.name) {
 
-  // do we have a name query param?
-  if(req.query.name) {
-    // filter students that start with name
-    const match = req.query.name.toLowerCase();
-    const filtered = students.filter(s => {
-      return s.name.toLowerCase().startsWith(match);
+  client.query(`
+    SELECT id, name FROM students;
+  `)
+    .then(result => {
+      res.json(result.rows);
     });
-    res.json(filtered);
-  }
-  else {
-    // send back all students
-    res.json(students);
-  }
+
 });
 
 app.post('/api/students', (req, res) => {
+  const body = req.body;
 
-  const students = readData();
-  const student = req.body;
-  student.id = shortid.generate();
-  // student.created = new Date();
-  students.push(student);
-  saveData(students);
-
-  res.json(student);
+  client.query(`
+    INSERT INTO students (name, description, track, start_date)
+    VALUES($1, $2, $3, $4)
+    RETURNING id, name, description, track, start_date as "startDate";
+  `,
+  [body.name, body.description, body.track, body.startDate])
+    .then(result => {
+      res.json(result.rows[0]);
+    });
 });
 
 /* end defined routes */
