@@ -37,14 +37,14 @@
 <script>
 import api from '../../services/api';
 
-const initStudent = () => {
+function initStudent() {
   return {
     name: '',
     startDate: '',
     track: 'js',
     description: ''
   };
-};
+}
 
 export default {
   props: {

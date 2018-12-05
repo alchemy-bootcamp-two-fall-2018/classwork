@@ -35,6 +35,16 @@ app.get('/api/students', (req, res) => {
 
 });
 
+app.get('/api/students/:id', (req, res) => {
+  client.query(`
+    SELECT * FROM students WHERE id = $1;
+  `,
+  [req.params.id])
+    .then(result => {
+      res.json(result.rows[0]);
+    });
+});
+
 app.post('/api/students', (req, res) => {
   const body = req.body;
 
