@@ -10,6 +10,8 @@ app.use(morgan('dev'));
 app.use(express.json());
 
 /* Defined routes: METHOD, URL PATH */
+// method == app.<method>
+// path = app.get('/this/is/path', ...)
 
 app.get('/api/tracks', (req, res) => {
   client.query(`
@@ -22,12 +24,8 @@ app.get('/api/tracks', (req, res) => {
     });
 });
 
-// method == app.<method>
-// path = app.get('/this/is/path', ...)
+
 app.get('/api/students', (req, res) => {
-  // TODO: reimplement queries
-  // // do we have a name query param?
-  // if(req.query.name) {
 
   client.query(`
     SELECT 
