@@ -26,7 +26,6 @@ app.get('/api/tracks', (req, res) => {
 
 
 app.get('/api/students', (req, res) => {
-
   client.query(`
     SELECT 
       student.id, 
@@ -42,7 +41,6 @@ app.get('/api/students', (req, res) => {
     .then(result => {
       res.json(result.rows);
     });
-
 });
 
 app.get('/api/students/:id', (req, res) => {
@@ -66,6 +64,7 @@ app.post('/api/students', (req, res) => {
   [body.name, body.trackId, body.startDate])
     .then(result => {
       const id = result.rows[0].id;
+      
       return client.query(`
         SELECT 
           student.id, 
