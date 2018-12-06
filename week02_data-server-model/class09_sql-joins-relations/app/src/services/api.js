@@ -24,11 +24,7 @@ export default {
   },
 
   getTracks() {
-    return {
-      js: 'JavaScript',
-      python: 'Python',
-      go: 'Go',
-      rust: 'Rust'
-    };
+    return fetch('/api/tracks')
+      .then(response => response.json());
   }
 };

@@ -5,10 +5,6 @@
       <input v-model="student.name" require>
     </p>
     <p>
-      <label>Description:</label>
-      <textarea v-model="student.description"></textarea>
-    </p>
-    <p>
       <label>Start Date:</label>
       <input type="date" 
         v-model="student.startDate" 
@@ -18,14 +14,15 @@
     <p>
       <label>Track:</label>
       <select v-if="tracks" 
-        v-model="student.track" 
+        v-model="student.trackId" 
         required
       >
-        <option v-for="(display, key) in tracks"
-          :key="key"
-          :value="key"
+        <option value="-1" disabled>Select a Track</option>
+        <option v-for="track in tracks"
+          :key="track.id"
+          :value="track.id"
         >
-          {{display}}
+          {{track.name}} ({{track.shortName}})
         </option>
       </select>
     </p>
@@ -41,8 +38,7 @@ function initStudent() {
   return {
     name: '',
     startDate: '',
-    track: 'js',
-    description: ''
+    trackId: -1,
   };
 }
 
@@ -57,7 +53,10 @@ export default {
     };
   },
   created() {
-    this.tracks = api.getTracks();
+    api.getTracks()
+      .then(tracks => {
+        this.tracks = tracks;
+      });
   },
   methods: {
     handleSubmit() {
@@ -65,6 +64,12 @@ export default {
         .then(() => {
           this.student = initStudent();
         });
+
+      // If this component was on own app page:
+      // api.addStudent(this.student)
+      //   .then(saved => {
+      //     this.$router.push(`/students/${saved.id}`);
+      //   });
     }
   }
 };

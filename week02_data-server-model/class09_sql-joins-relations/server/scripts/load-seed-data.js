@@ -1,20 +1,30 @@
-const pg = require('pg');
-const Client = pg.Client;
-const databaseUrl = 'postgres://localhost:5432/school';
+const client = require('../db-client');
 const students = require('./students.json');
+const tracks = require('./tracks');
 
-const client = new Client(databaseUrl);
-
-client.connect()
+// "Promise all" does a parallel execution of async tasks
+Promise.all(
+  tracks.map(track => {
+    return client.query(`
+      INSERT INTO track (name, short_name)
+      VALUES ($1, $2);
+    `,
+    [track.name, track.shortName]);
+  })
+)
   .then(() => {
-    // "Promise all" does a parallel execution of async tasks
     return Promise.all(
       students.map(student => {
         return client.query(`
-          INSERT INTO students (name, description, track, start_date)
-          VALUES ($1, $2, $3, $4);
+          INSERT INTO student (name, track_id, start_date)
+          SELECT 
+            $1 as name, 
+            id as track_id,
+            $2 as start_date
+          FROM track
+          WHERE short_name = $3;
         `,
-        [student.name, student.description, student.track, student.start_date]);
+        [student.name, student.startDate, student.track]);
       })
     );
   })
