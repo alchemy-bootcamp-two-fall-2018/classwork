@@ -1,4 +1,5 @@
 
+let tracks = null;
 
 export default {
   
@@ -24,7 +25,16 @@ export default {
   },
 
   getTracks() {
-    return fetch('/api/tracks')
-      .then(response => response.json());
+    if(tracks) {
+      return Promise.resolve(tracks);
+    }
+    else {
+      return fetch('/api/tracks')
+        .then(response => response.json())
+        .then(fetchedTracks => {
+          tracks = fetchedTracks;
+          return tracks;
+        });
+    }
   }
 };
