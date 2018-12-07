@@ -7,6 +7,7 @@
       <EditStudent 
         :student="student"
         :onEdit="handleEdit"/>
+      <button @click="handleRemove">🗑 Remove</button>
     </div>
 
     <p>
@@ -50,6 +51,12 @@ export default {
         .then(updated => {
           this.student = updated;
         });
+    },
+    handleRemove() {
+      if(!confirm(`Are you sure you want to remove ${this.student.name}?`)) {
+        return;
+      }
+      // return api.removeStudent(student)
     }
   }
 };
