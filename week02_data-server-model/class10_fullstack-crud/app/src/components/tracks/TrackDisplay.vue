@@ -1,5 +1,5 @@
 <template>
-  <span>
+  <span v-if="track">
     {{track.name}}
   </span>
 </template>
@@ -23,3 +23,4 @@ export default {
       });
   }
 };
+</script>

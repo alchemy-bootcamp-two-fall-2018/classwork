@@ -1,14 +1,24 @@
 <template>
     <li>
-      <RouterLink :to="`/students/${student.id}`">{{student.name}}</RouterLink>
-      {{student.track}} starting {{formattedStartDate}}
+      <RouterLink :to="`/students/${student.id}`">
+        {{student.name}}
+      </RouterLink>
+
+      <TrackDisplay :trackId="student.trackId" />
+      starting 
+      {{formattedStartDate}}
     </li>
 </template>
 
 <script>
+import TrackDisplay from '../tracks/TrackDisplay';
+
 export default {
   props: {
     student: null
+  },
+  components: {
+    TrackDisplay
   },
   computed: {
     formattedStartDate() {
