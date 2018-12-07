@@ -7,15 +7,12 @@ router
   .get('/', (req, res) => {
     client.query(`
       SELECT 
-        student.id, 
-        student.name as name,
-        start_date as "startDate",
-        track.id as "trackId",  
-        track.name as track
+        id, 
+        name,
+        track_id as "trackId",
+        start_date as "startDate"
       FROM student
-      JOIN track
-      ON student.track_id = track.id
-      ORDER BY start_date DESC, name ASC;
+      ORDER BY name;
     `)
       .then(result => {
         res.json(result.rows);
@@ -24,7 +21,13 @@ router
 
   .get('/:id', (req, res) => {
     client.query(`
-      SELECT * FROM student WHERE id = $1;
+      SELECT 
+        id, 
+        name,
+        track_id as "trackId",
+        start_date as "startDate"
+      FROM student 
+      WHERE id = $1;
     `,
     [req.params.id])
       .then(result => {
@@ -38,26 +41,13 @@ router
     client.query(`
       INSERT INTO student (name, track_id, start_date)
       VALUES($1, $2, $3)
-      RETURNING id;
+      RETURNING 
+        id, 
+        name,
+        track_id as "trackId",
+        start_date as "startDate";
     `,
     [body.name, body.trackId, body.startDate])
-      .then(result => {
-        const id = result.rows[0].id;
-        
-        return client.query(`
-          SELECT 
-            student.id, 
-            student.name as name,
-            start_date as "startDate",
-            track.id as "trackId",  
-            track.name as track
-          FROM student
-          JOIN track
-          ON student.track_id = track.id 
-          WHERE student.id = $1;
-        `,
-        [id]);
-      })
       .then(result => {
         res.json(result.rows[0]);
       });
