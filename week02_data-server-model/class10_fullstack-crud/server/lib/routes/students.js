@@ -51,6 +51,28 @@ router
       .then(result => {
         res.json(result.rows[0]);
       });
+  })
+  
+  .put('/:id', (req, res) => {
+    const body = req.body;
+
+    client.query(`
+      UPDATE student
+      SET
+        name = $1,
+        track_id = $2,
+        start_date = $3
+      WHERE id = $4
+      RETURNING
+        id, 
+        name,
+        track_id as "trackId",
+        start_date as "startDate";
+    `,
+    [body.name, body.trackId, body.startDate, body.id])
+      .then(result => {
+        res.json(result.rows[0]);
+      });
   });
 
 module.exports = router;
