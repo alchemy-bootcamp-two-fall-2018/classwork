@@ -40,5 +40,18 @@ export default {
           return tracks;
         });
     }
+  },
+
+  addTrack(track) {
+    return fetch('/api/tracks', getPostOptions(track))
+      .then(response => response.json())
+      .then(saved => {
+        tracks.push(saved);
+        tracks.sort((a, b) => {
+          if(a.name > b.name) return 1;
+          if(a.name < b.name) return -1;
+          return 0;
+        });
+      });
   }
 };

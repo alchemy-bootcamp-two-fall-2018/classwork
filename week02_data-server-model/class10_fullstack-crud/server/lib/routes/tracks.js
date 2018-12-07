@@ -27,7 +27,7 @@ router
     client.query(`
       INSERT INTO track (name, short_name)
       VALUES ($1, $2)
-      RETURNING *;
+      RETURNING id, name, short_name as "shortName";
     `,
     [body.name, getShortName(body.name)]
     )
