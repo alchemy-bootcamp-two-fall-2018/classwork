@@ -33,7 +33,7 @@ export default {
   },
   methods: {
     handleAdd() {
-      api.addTrack(this.trackName)
+      api.addTrack({ name: this.trackName })
         .then(() => {
           this.trackName = '';
         });
