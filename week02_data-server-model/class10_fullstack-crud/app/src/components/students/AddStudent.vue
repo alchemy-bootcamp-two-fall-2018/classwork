@@ -1,46 +1,15 @@
 <template>
-  <form @submit.prevent="handleSubmit">
-    <p>
-      <label>Name:</label>
-      <input v-model="student.name" require>
-    </p>
-    <p>
-      <label>Start Date:</label>
-      <input type="date" 
-        v-model="student.startDate" 
-        required>
-    </p>
-
-    <p>
-      <label>Track:</label>
-      <select v-if="tracks" 
-        v-model="student.trackId" 
-        required
-      >
-        <option value="-1" disabled>Select a Track</option>
-        <option v-for="track in tracks"
-          :key="track.id"
-          :value="track.id"
-        >
-          {{track.name}} ({{track.shortName}})
-        </option>
-      </select>
-    </p>
-
-    <button>Add</button>
-  </form>
+  <section>
+    <button @click="show = true">Add a New Student</button>
+    <Modal v-if="show" :onClose="() => show = false">
+      <StudentForm :onEdit="handleAdd"/>
+    </Modal>
+  </section>
 </template>
 
 <script>
-import api from '../../services/api';
-
-function initStudent() {
-  return {
-    name: '',
-    startDate: '',
-    trackId: -1,
-  };
-}
+import StudentForm from './StudentForm';
+import Modal from '../shared/Modal';
 
 export default {
   props: {
@@ -48,42 +17,18 @@ export default {
   },
   data() {
     return {
-      student: initStudent(),
-      tracks: null
+      show: false
     };
   },
-  created() {
-    api.getTracks()
-      .then(tracks => {
-        this.tracks = tracks;
-      });
+  components: {
+    StudentForm,
+    Modal
   },
   methods: {
-    handleSubmit() {
-      this.onAdd(this.student)
-        .then(() => {
-          this.student = initStudent();
-        });
-
-      // If this component was on own app page:
-      // api.addStudent(this.student)
-      //   .then(saved => {
-      //     this.$router.push(`/students/${saved.id}`);
-      //   });
+    handleAdd(student) {
+      return this.onAdd(student)
+        .then(() => this.show = false);
     }
   }
 };
 </script>
-
-<style lang="postcss" scoped>
-
-label {
-  display: block;
-}
-
-input, select {
-  width: 150px;
-  font-size: 1.05em;
-}
-</style>
-
