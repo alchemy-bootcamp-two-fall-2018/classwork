@@ -5,6 +5,7 @@
       <nav>
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/students">Students</RouterLink>
+        <RouterLink to="/tracks">Tracks</RouterLink>
       </nav>
     </header>
 
