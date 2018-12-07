@@ -6,24 +6,21 @@
 
       <TrackDisplay :trackId="student.trackId" />
       starting 
-      {{formattedStartDate}}
+      <DateDisplay :date="student.startDate"/>
     </li>
 </template>
 
 <script>
 import TrackDisplay from '../tracks/TrackDisplay';
+import DateDisplay from '../shared/DateDisplay';
 
 export default {
   props: {
     student: null
   },
   components: {
-    TrackDisplay
-  },
-  computed: {
-    formattedStartDate() {
-      return new Date(this.student.startDate).toLocaleDateString();
-    }
+    TrackDisplay,
+    DateDisplay
   }
 };
 </script>

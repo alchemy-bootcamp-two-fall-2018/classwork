@@ -13,7 +13,7 @@
       {{student.description}}
     </p>
     <p>
-      Start Date: {{student.startDate}}
+      Start Date: <DateDisplay :date="student.startDate"/>
     </p>
     <p>
       Track: <TrackDisplay :trackId="student.trackId"/>
@@ -24,6 +24,7 @@
 <script>
 import api from '../../services/api';
 import TrackDisplay from '../tracks/TrackDisplay';
+import DateDisplay from '../shared/DateDisplay';
 import EditStudent from './EditStudent';
 
 export default {
@@ -34,6 +35,7 @@ export default {
   },
   components: {
     TrackDisplay,
+    DateDisplay,
     EditStudent
   },
   created() {

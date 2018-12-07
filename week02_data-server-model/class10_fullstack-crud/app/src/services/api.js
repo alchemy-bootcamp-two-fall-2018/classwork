@@ -1,9 +1,9 @@
 
 let tracks = null;
 
-const getPostOptions = data => {
+const getOptions = (method, data) => {
   return {
-    method: 'POST',
+    method,
     headers: {
       'Content-Type': 'application/json'
     },
@@ -24,7 +24,15 @@ export default {
   },
 
   addStudent(student) {
-    return fetch('/api/students', getPostOptions(student))
+    return fetch('/api/students', getOptions('POST', student))
+      .then(response => response.json());
+  },
+
+  updateStudent(student) {
+    return fetch(
+      `/api/students/${student.id}`, 
+      getOptions('PUT', student)
+    )
       .then(response => response.json());
   },
 
@@ -43,7 +51,7 @@ export default {
   },
 
   addTrack(track) {
-    return fetch('/api/tracks', getPostOptions(track))
+    return fetch('/api/tracks', getOptions('POST', track))
       .then(response => response.json())
       .then(saved => {
         tracks.push(saved);

@@ -28,11 +28,6 @@ export default {
         return 0;
       });
     }
-  },
-  methods: {
-    getDate(startDate) {
-      return new Date(startDate).toLocaleDateString();
-    }
   }
 };
 </script>

@@ -44,6 +44,7 @@ function initStudent() {
 
 function copyStudent(student) {
   return {
+    id: student.id,
     name: student.name,
     startDate: student.startDate.split('T')[0],
     trackId: student.trackId
