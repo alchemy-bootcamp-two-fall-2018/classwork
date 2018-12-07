@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const morgan = require('morgan');
 const students = require('./lib/routes/students');
-const client = require('./db-client');
+const tracks = require('./lib/routes/tracks');
 
 // enhanced logging
 app.use(morgan('dev'));
@@ -14,17 +14,7 @@ app.use(express.json());
 // method == app.<method>
 // path = app.get('/this/is/path', ...)
 
-app.get('/api/tracks', (req, res) => {
-  client.query(`
-    SELECT id, name, short_name as "shortName"
-    FROM track
-    ORDER BY name;
-  `)
-    .then(result => {
-      res.json(result.rows);
-    });
-});
-
+app.use(tracks);
 app.use(students);
 
 
