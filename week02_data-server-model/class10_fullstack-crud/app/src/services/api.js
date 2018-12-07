@@ -1,6 +1,16 @@
 
 let tracks = null;
 
+const getPostOptions = data => {
+  return {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+  };
+};
+
 export default {
   
   getStudents() {
@@ -14,13 +24,7 @@ export default {
   },
 
   addStudent(student) {
-    return fetch('/api/students', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(student)
-    })
+    return fetch('/api/students', getPostOptions(student))
       .then(response => response.json());
   },
 
