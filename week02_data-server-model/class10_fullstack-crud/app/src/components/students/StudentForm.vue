@@ -1,5 +1,5 @@
 <template>
-  <form @submit.prevent="handleSubmit">
+  <form @submit.prevent="onSubmit(student)">
     <p>
       <label>Name:</label>
       <input v-focus v-model="student.name" require>
@@ -42,14 +42,25 @@ function initStudent() {
   };
 }
 
+function copyStudent(student) {
+  return {
+    name: student.name,
+    startDate: student.startDate.split('T')[0],
+    trackId: student.trackId
+  };
+}
+
 export default {
   props: {
-    onEdit: Function,
-    label: String
+    onSubmit: Function,
+    label: String,
+    studentToEdit: Object
   },
   data() {
     return {
-      student: initStudent(),
+      student: this.studentToEdit 
+        ? copyStudent(this.studentToEdit) 
+        : initStudent(),
       tracks: null
     };
   },
@@ -58,11 +69,6 @@ export default {
       .then(tracks => {
         this.tracks = tracks;
       });
-  },
-  methods: {
-    handleSubmit() {
-      this.onEdit(this.student);
-    }
   }
 };
 </script>

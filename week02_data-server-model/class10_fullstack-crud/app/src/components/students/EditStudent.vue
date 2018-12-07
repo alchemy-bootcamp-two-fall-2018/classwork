@@ -1,10 +1,14 @@
 <template>
-  <section>
-    <button @click="show = true">Add a New Student</button>
+  <span>
+    <button @click="show = true">✎ Edit</button>
     <Modal v-if="show" :onClose="() => show = false">
-      <StudentForm :onSubmit="handleAdd"/>
+      <StudentForm 
+        :onSubmit="handleEdit"
+        :studentToEdit="student"
+        label="Update"
+      />
     </Modal>
-  </section>
+  </span>
 </template>
 
 <script>
@@ -13,7 +17,8 @@ import Modal from '../shared/Modal';
 
 export default {
   props: {
-    onAdd: Function
+    onEdit: Function,
+    student: Object
   },
   data() {
     return {
@@ -25,8 +30,8 @@ export default {
     Modal
   },
   methods: {
-    handleAdd(student) {
-      return this.onAdd(student)
+    handleEdit(student) {
+      return this.onEdit(student)
         .then(() => this.show = false);
     }
   }
