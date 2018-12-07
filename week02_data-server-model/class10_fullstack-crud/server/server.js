@@ -14,8 +14,8 @@ app.use(express.json());
 // method == app.<method>
 // path = app.get('/this/is/path', ...)
 
-app.use(tracks);
-app.use(students);
+app.use('/api/tracks', tracks);
+app.use('/api/students', students);
 
 
 /* end defined routes */

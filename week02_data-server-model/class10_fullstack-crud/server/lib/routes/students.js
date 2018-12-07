@@ -4,7 +4,7 @@ const Router = express.Router;
 const router = Router(); //eslint-disable-line new-cap
 
 router
-  .get('/api/students', (req, res) => {
+  .get('/', (req, res) => {
     client.query(`
       SELECT 
         student.id, 
@@ -22,7 +22,7 @@ router
       });
   })
 
-  .get('/api/students/:id', (req, res) => {
+  .get('/:id', (req, res) => {
     client.query(`
       SELECT * FROM student WHERE id = $1;
     `,
@@ -32,7 +32,7 @@ router
       });
   })
 
-  .post('/api/students', (req, res) => {
+  .post('/', (req, res) => {
     const body = req.body;
 
     client.query(`
