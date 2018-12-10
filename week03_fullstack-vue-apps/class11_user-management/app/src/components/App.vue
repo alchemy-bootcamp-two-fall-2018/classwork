@@ -2,9 +2,10 @@
   <div class="app">
     <header>
       <img src="../assets/logo.png">
-      <nav>
+      <nav v-if="user">
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/pets">Pets</RouterLink>
+        <a href="#" @click="handleLogout">Logout</a>
       </nav>
     </header>
 
@@ -32,18 +33,40 @@ export default {
   components: {
     Auth
   },
+  created() {
+    const json = window.localStorage.getItem('profile');
+    if(json) {
+      this.setUser(JSON.parse(json));
+    }
+  },
   methods: {
     handleSignUp(profile) {
       return api.signUp(profile)
         .then(user => {
-          this.user = user;
+          this.setUser(user);
         });
     },
     handleSignIn(credentials) {
       return api.signIn(credentials)
         .then(user => {
-          this.user = user;
+          this.setUser(user);
         });
+    },
+    setUser(user) {
+      this.user = user;
+      if(user) {
+        api.setToken(user.id);
+        window.localStorage.setItem('profile', JSON.stringify(user));
+      }
+      else {
+        api.setToken();
+        window.localStorage.removeItem('profile');
+      }
+    },
+    handleLogout() {
+      // TODO: tell api to forget token
+      this.setUser(null);
+      this.$router.push('/');
     }
   }
 };

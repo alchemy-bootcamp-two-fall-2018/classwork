@@ -1,15 +1,29 @@
+let token = '';
+
 const getOptions = (method, data) => {
-  return {
+  const options = {
     method,
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(data)
+    headers: {}
   };
+
+  if(data) {
+    options.headers['Content-Type'] = 'application/json';
+    options.body = JSON.stringify(data);
+  }
+
+  if(token) {
+    options.headers.Authorization = token;
+  }
+
+  return options;
 };
 
 export default {
   
+  setToken(t) {
+    token = t;
+  },
+
   signUp(profile) {
     return fetch('/api/auth/signup', getOptions('POST', profile))
       .then(response => {
@@ -39,7 +53,7 @@ export default {
   },
 
   getPets() {
-    return fetch('/api/pets')
+    return fetch('/api/pets', getOptions('GET'))
       .then(response => response.json());      
   },
 
