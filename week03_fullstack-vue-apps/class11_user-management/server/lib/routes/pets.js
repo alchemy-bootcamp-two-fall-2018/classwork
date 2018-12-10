@@ -7,8 +7,10 @@ router
   .get('/', (req, res) => {
     client.query(`
       SELECT id, name, type
-      FROM pet;
-    `)
+      FROM pet
+      WHERE profile_id = $1;
+    `,
+    [req.userId])
       .then(result => {
         res.json(result.rows);
       });
@@ -18,11 +20,11 @@ router
     const body = req.body;
 
     client.query(`
-      INSERT INTO pet (name, type)
-      VALUES($1, $2)
+      INSERT INTO pet (name, type, profile_id)
+      VALUES($1, $2, $3)
       RETURNING *;
     `,
-    [body.name, body.type])
+    [body.name, body.type, req.userId])
       .then(result => {
         res.json(result.rows[0]);
       });
