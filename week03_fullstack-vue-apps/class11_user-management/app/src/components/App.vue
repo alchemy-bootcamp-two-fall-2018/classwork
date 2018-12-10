@@ -2,6 +2,9 @@
   <div class="app">
     <header>
       <img src="../assets/logo.png">
+      <span v-if="user">
+        Hello {{user.username}}!
+      </span>
       <nav v-if="user">
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/pets">Pets</RouterLink>
