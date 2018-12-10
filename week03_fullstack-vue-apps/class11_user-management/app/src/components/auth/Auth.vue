@@ -8,7 +8,7 @@
         <button @click="method = 'signup'">Sign Up</button>
       </p>
 
-      <form @submit.prevent="onSignIn(profile)">
+      <form @submit.prevent="handleSignInSubmit(profile)">
         <label>
           Username:
           <input v-model="profile.username" required>
@@ -31,7 +31,7 @@
         <button @click="method = 'signin'">Sign In</button>
       </p>
 
-      <form @submit.prevent="onSignUp(profile)">
+      <form @submit.prevent="handleSignUpSubmit(profile)">
         <label>
           Username:
           <input v-model="profile.username" required>
@@ -45,7 +45,7 @@
         </label>
       </form>
     </div>
-
+    <pre v-if="error">{{error}}</pre>
   </section>
 </template>
 
@@ -58,11 +58,30 @@ export default {
   data() {
     return {
       method: 'signin',
+      error: '',
       profile: {
         username: '',
         password: ''
       }
     };
+  },
+  methods: {
+    handleSignInSubmit() {
+      this.error = '';
+
+      this.onSignIn(this.profile)
+        .catch(error => {
+          this.error = error.error;
+        });
+    },
+    handleSignUpSubmit() {
+      this.error = '';
+
+      this.onSignUp(this.profile)
+        .catch(error => {
+          this.error = error.error;
+        });
+    }
   }
 };
 </script>
@@ -73,4 +92,9 @@ label {
   display: block;
   padding: 10px 0;
 }
+
+pre {
+  color: red;
+}
+
 </style>
