@@ -10,6 +10,16 @@ const getOptions = (method, data) => {
 
 export default {
   
+  signUp(profile) {
+    return fetch('/api/auth/signup', getOptions('POST', profile))
+      .then(response => response.json());
+  },
+
+  signIn(credentials) {
+    return fetch('/api/auth/signup', getOptions('POST', credentials))
+      .then(response => response.json());
+  },
+
   getPets() {
     return fetch('/api/pets')
       .then(response => response.json());      
@@ -18,6 +28,6 @@ export default {
   addPet(pet) {
     return fetch('/api/pets', getOptions('POST', pet))
       .then(response => response.json());
-  },
+  }
 
 };

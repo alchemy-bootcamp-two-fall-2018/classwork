@@ -1,7 +1,7 @@
 <template>
   <div class="app">
     <header>
-      <img src="./assets/logo.png">
+      <img src="../assets/logo.png">
       <nav>
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/pets">Pets</RouterLink>
@@ -9,14 +9,37 @@
     </header>
 
     <main>
-      <RouterView></RouterView>
+      <RouterView v-if="user" :user="user"/>
+      <Auth v-else
+        :onSignUp="handleSignUp"
+        :onSignIn="handleSignIn"
+      />
     </main>
     
   </div>
 </template>
 
 <script>
-export default {};
+import Auth from './auth/Auth';
+
+export default {
+  data() {
+    return {
+      user: null
+    };
+  },
+  components: {
+    Auth
+  },
+  methods: {
+    handleSignUp(profile) {
+      console.log('would sign up', profile);
+    },
+    handleSignIn(credentials) {
+      console.log('would sign in', credentials);
+    }
+  }
+};
 </script>
 
 <style scoped>
