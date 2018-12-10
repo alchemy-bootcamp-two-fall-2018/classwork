@@ -4,8 +4,7 @@
       <img src="./assets/logo.png">
       <nav>
         <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/students">Students</RouterLink>
-        <RouterLink to="/tracks">Tracks</RouterLink>
+        <RouterLink to="/pets">Pets</RouterLink>
       </nav>
     </header>
 

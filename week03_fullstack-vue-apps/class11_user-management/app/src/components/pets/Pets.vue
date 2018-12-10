@@ -1,8 +1,11 @@
 <template>
   <section class="pets">
-    <h2>Students</h2>
+    <h2>My Pets</h2>
+    <h3>Add a New Pet</h3>
     <AddPet :onAdd="handleAdd"/>
-    <PetList :pets="pets"/>
+    <h3>Current Pets</h3>
+    <PetList v-if="pets && pets.length > 0" :pets="pets"/>
+    <p v-else>Add a pet to get started!</p>
   </section>
 </template>
 
@@ -23,8 +26,8 @@ export default {
   },
   created() {
     api.getPets()
-      .then(students => {
-        this.students = students;
+      .then(pets => {
+        this.pets = pets;
       })
       .catch(err => {
         this.error = err;

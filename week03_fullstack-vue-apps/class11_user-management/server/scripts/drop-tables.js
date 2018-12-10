@@ -2,7 +2,7 @@ const client = require('../db-client');
 
 client.query(`
   DROP TABLE IF EXISTS pet;
-  DROP TABLE IF EXISTS user;
+  DROP TABLE IF EXISTS profile;
 `)
   .then(
     () => console.log('drop tables complete'),

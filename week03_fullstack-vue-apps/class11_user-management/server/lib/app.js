@@ -1,8 +1,8 @@
 const express = require('express');
 const app = express();
 const morgan = require('morgan');
-const students = require('./routes/students');
-const tracks = require('./routes/tracks');
+const auth = require('./routes/auth');
+const pets = require('./routes/pets');
 
 // enhanced logging
 app.use(morgan('dev'));
@@ -11,7 +11,7 @@ app.use(morgan('dev'));
 app.use(express.json());
 
 // register our routes
-app.use('/api/tracks', tracks);
-app.use('/api/students', students);
+app.use('/api/auth', auth);
+app.use('/api/pets', pets);
 
 module.exports = app;

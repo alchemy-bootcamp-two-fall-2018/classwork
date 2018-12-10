@@ -1,14 +1,9 @@
 <template>
   <form @submit.prevent="handleSubmit">
-    <p>
-      <label>Name:</label>
-      <input v-focus v-model="student.name" require>
-    </p>
-    <p>
-      <label>Type:</label>
-      <input v-focus v-model="student.type" require>
-    </p>
-
+    <label>Name:</label>
+    <input v-focus v-model="pet.name" require>
+    <label>Type:</label>
+    <input v-focus v-model="pet.type" require>
     <button>Add</button>
   </form>
 </template>
@@ -45,12 +40,17 @@ export default {
 
 <style lang="postcss" scoped>
 
-label {
-  display: block;
+form {
+  border: 1px solid #aaa;
+  padding: 10px;
 }
 
-input, select {
-  width: 150px;
+input, button {
+  margin: 0 5px;
+}
+
+input {
+  width: 125px;
   font-size: 1.05em;
 }
 </style>
