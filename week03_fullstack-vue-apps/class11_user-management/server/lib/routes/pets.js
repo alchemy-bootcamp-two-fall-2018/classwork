@@ -28,6 +28,25 @@ router
       .then(result => {
         res.json(result.rows[0]);
       });
+  })
+  
+  // pseudo example for goals
+  // okay to have "virtual" sub-resource
+  .put('/:id/completed', (req, res) => {
+    const completed = req.body.completed;
+
+    client.query(`
+      UPDATE pet
+      SET completed = $1
+      WHERE id = $2
+      AND profile_id = $3
+      RETURNING *;
+    `,
+    [completed, req.params.id, req.userId]
+    )
+      .then(result => {
+        res.json(result.rows[0]);
+      });
   });
   
 
