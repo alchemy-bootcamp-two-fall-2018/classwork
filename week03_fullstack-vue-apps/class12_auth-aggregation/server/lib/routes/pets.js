@@ -20,8 +20,8 @@ router
     client.query(`
       SELECT pet_id as "petId", 
         MIN(pet.name) as "petName",
-        COUNT(game.id), 
-        AVG(score) as "averageScore", 
+        CAST(COUNT(game.id) as int) as count, 
+        CAST(ROUND(AVG(score)) as int) as "averageScore", 
         MIN(score) as "minimumScore", 
         MAX(score) as "maximumScore"
       FROM game
