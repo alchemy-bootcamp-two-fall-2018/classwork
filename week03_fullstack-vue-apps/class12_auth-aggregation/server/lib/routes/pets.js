@@ -16,6 +16,28 @@ router
       });
   })
 
+  .get('/stats', (req, res) => {
+    client.query(`
+      SELECT pet_id as "petId", 
+        MIN(pet.name) as "petName",
+        COUNT(game.id), 
+        AVG(score) as "averageScore", 
+        MIN(score) as "minimumScore", 
+        MAX(score) as "maximumScore"
+      FROM game
+      JOIN pet
+      ON game.pet_id = pet.id
+      WHERE pet.profile_id = $1
+      GROUP BY pet_id
+      ORDER BY "averageScore";
+    `,
+    [req.userId]
+    )
+      .then(result => {
+        res.json(result.rows);
+      });
+  })
+
   .post('/', (req, res) => {
     const body = req.body;
 

@@ -19,7 +19,7 @@ Class 11: User Management
 1. Use `SELECT` and `JOIN` and `WHERE` to create the "result set" to aggregate
 1. Add `GROUP BY` columns
 1. Any non-grouped columns in `SELECT` need to be aggregated
-1. Use `HAVING` and `TOP` to further filter
+1. Use `HAVING` and `LIMIT` to further filter
 
 ---
 **Time Allowing**
