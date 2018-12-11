@@ -57,6 +57,11 @@ export default {
       .then(response => response.json());      
   },
 
+  getPetStats() {
+    return fetch('/api/pets/stats', getOptions('GET'))
+      .then(response => response.json());     
+  },
+
   addPet(pet) {
     return fetch('/api/pets', getOptions('POST', pet))
       .then(response => response.json());
