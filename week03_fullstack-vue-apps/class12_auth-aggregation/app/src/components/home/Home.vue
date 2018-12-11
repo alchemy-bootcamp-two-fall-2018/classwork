@@ -43,3 +43,29 @@ export default {
   }
 };
 </script>
+
+<style lang="postcss" scoped>
+
+table {
+  width: 100%;
+  max-width: 600px;
+  border-collapse: collapse;
+
+  th, td {
+    text-align: right;
+  }
+
+  td {
+    padding: 10px 3px;
+  }
+
+  th:first-child, td:first-child {
+    text-align: left;
+  }
+
+  tr:nth-child(even) {
+    background: rgba(0, 0, 0, .1);
+  }
+
+}
+</style>
