@@ -5,6 +5,14 @@ const jwt = require('jsonwebtoken');
 
 const APP_SECRET = 'CHANGEMENOW';
 
+function getProfileWithToken(profile) {
+  return {
+    id: profile.id,
+    username: profile.username,
+    token: jwt.sign({ id: profile.id }, APP_SECRET)
+  };
+}
+
 router
   .post('/signup', (req, res) => {
 
@@ -43,9 +51,7 @@ router
         )
           .then(result => {
             const profile = result.rows[0];
-            profile.token = jwt.sign({ id: profile.id }, APP_SECRET);
-            // return profile object that has id that will be used as a token
-            res.json(profile);
+            res.json(getProfileWithToken(profile));
           });
       });
   })
@@ -73,16 +79,14 @@ router
     )
       .then(result => {
         const profile = result.rows[0];
+        // #1 !profile - if no profile, then no match on a row for username
+        // #2 !compareSync - provided password did not match hash from db
         if(!profile || !bcrypt.compareSync(password, profile.hash)) {
           res.status(400).json({ error: 'username or password incorrect' });
           return;
         }
 
-        res.json({
-          id: profile.id,
-          username: profile.username,
-          token: jwt.sign({ id: profile.id }, APP_SECRET)
-        });
+        res.json(getProfileWithToken(profile));
       });
   });
 
