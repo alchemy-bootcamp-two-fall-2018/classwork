@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const client = require('../db-client');
+const bcrypt = require('bcryptjs');
 
 router
   .post('/signup', (req, res) => {
@@ -31,11 +32,11 @@ router
 
         // insert into profile the new user
         client.query(`
-          INSERT into profile (username, password)
+          INSERT into profile (username, hash)
           VALUES ($1, $2)
           RETURNING id, username;
         `,
-        [username, password]
+        [username, bcrypt.hashSync(password, 8)]
         )
           .then(result => {
             // return profile object that has id that will be used as a token
