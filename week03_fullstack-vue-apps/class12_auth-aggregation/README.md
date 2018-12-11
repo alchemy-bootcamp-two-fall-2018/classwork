@@ -14,6 +14,16 @@ Class 11: User Management
 1. Adding [`bcryptjs`](https://www.npmjs.com/package/bcryptjs)
 1. [`jsonwebtoken`](https://www.npmjs.com/package/jsonwebtoken)
 
+## SQL Aggregations
+
+1. Use `SELECT` and `JOIN` and `WHERE` to create the "result set" to aggregate
+1. Add `GROUP BY` columns
+1. Any non-grouped columns in `SELECT` need to be aggregated
+1. Use `HAVING` and `TOP` to further filter
+
+---
+**Time Allowing**
+
 ## Environment Variables
 
 1. Install `dotenv`:
@@ -44,15 +54,6 @@ Class 11: User Management
     ```js
     const DATABASE_URL = process.env.DATABASE_URL;
     ```
-
-## SQL Aggregations
-
-1. Use `SELECT` and `JOIN` and `WHERE` to create the "result set" to aggregate
-1. Add `GROUP BY` columns
-1. Any non-grouped columns in `SELECT` need to be aggregated
-1. Use `HAVING` and `TOP` to further filter
-
-** Time Allowing **
 
 ## Serving App From `server`
 
