@@ -3,8 +3,7 @@ const app = express();
 const morgan = require('morgan');
 const auth = require('./routes/auth');
 const pets = require('./routes/pets');
-const jwt = require('jsonwebtoken');
-const APP_SECRET = 'CHANGEMENOW';
+const jwt = require('./jwt');
 
 // enhanced logging
 app.use(morgan('dev'));
@@ -21,7 +20,7 @@ function checkAuth(req, res, next) {
 
   let payload = null;
   try {
-    payload = jwt.verify(token, APP_SECRET);
+    payload = jwt.verify(token);
   }
   catch (err) {
     // this code runs with verify fails
