@@ -1,15 +1,15 @@
 <template>
   <section>
-    <div v-if="!show">
-      <button @click="show = true">Add an Animal</button>
-    </div>
-    <div v-else>
-      <h2>Add a new Animal</h2>
-      <AnimalForm
-        :animalTypes="animalTypes"
-        :onAdd="handleAdd"
-        :onCancel="() => show = false"/>
-    </div>
+      <button v-on:click="show = !show">Add an Animal</button>
+      <transition name="fade">
+        <div v-if="show">
+          <h2>Add a new Animal</h2>
+          <AnimalForm
+            :animalTypes="animalTypes"
+            :onAdd="handleAdd"
+            :onCancel="() => show = false"/>
+          </div>
+      </transition>
   </section>
 </template>
 
@@ -43,6 +43,14 @@ export default {
 section {
   background: #aaa;
   padding: 10px;
+}
+.fade-enter-active, .fade-leave-active {
+  transition: all 1s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+  /* transform: translateY(-300px);  */
+  margin-top: -360px;
 }
 </style>
 

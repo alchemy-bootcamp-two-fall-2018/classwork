@@ -1,10 +1,10 @@
 <template>
-  <ul>
+  <transition-group name="flip-list" tag="ul">
     <Animal v-for="animal in animals"
       @click.native="onSelect(animal)"
       :key="animal.name"
       :animal="animal"/>
-  </ul>
+  </transition-group>
 </template>
 
 <script>
@@ -29,7 +29,12 @@ ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
-  max-height: 50vh;
+  height: calc(100vh - 150px);
+  width: 50vw;
   overflow-y: auto;
+}
+
+.flip-list-move {
+  transition: transform 1s;
 }
 </style>

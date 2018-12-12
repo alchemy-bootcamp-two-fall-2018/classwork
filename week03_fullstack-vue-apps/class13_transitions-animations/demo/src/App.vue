@@ -8,16 +8,16 @@
     <AddAnimal 
       :onAdd="handleAdd"
       :animalTypes="animalTypes"/>
+    <div class="container">
+      <Animals 
+        :animals="sortedAnimals" 
+        :onSelect="handleSelect"/>
 
-    <Animals 
-      :animals="sortedAnimals" 
-      :onSelect="handleSelect"/>
-
-    <AnimalDetail 
-      :animal="selected"
-      :animalTypes="animalTypes"
-      :onEdit="handleEdit"/>
-
+      <AnimalDetail 
+        :animal="selected"
+        :animalTypes="animalTypes"
+        :onEdit="handleEdit"/>
+    </div>
   </div>
 </template>
 
@@ -105,5 +105,7 @@ export default {
 </script>
 
 <style>
-
+.container {
+  display: flex;
+}
 </style>

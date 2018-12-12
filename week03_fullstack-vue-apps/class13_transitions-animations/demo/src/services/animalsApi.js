@@ -75,6 +75,22 @@ const animals = [
     type: 'mammal',
     weight: 10000,
     img: '/images/whale.jpg'
+  },
+  {
+    name: 'unicorn',
+    size: 'big',
+    isPet: true,
+    type: 'mammal',
+    weight: 2000,
+    img: '/images/unicorn.jpg'
+  },
+  {
+    name: 'rubber duck',
+    size: 'tiny',
+    isPet: true,
+    type: 'rubber',
+    weight: 1,
+    img: '/images/rubber-duck.jpg'
   }
 ];
 
