@@ -1,0 +1,17 @@
+/* COLORS */
+
+$red: #F0412C;
+$orange: #F38626;
+$yellow: #F0AA21;
+$teal: #03A596;
+$blue: #000026;
+
+$card-size: 150px;
+
+body {
+  background: $blue;
+}
+
+ul {
+  margin: 100px;
+}
