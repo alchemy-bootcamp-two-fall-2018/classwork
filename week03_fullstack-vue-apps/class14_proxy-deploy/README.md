@@ -121,12 +121,20 @@ Proxy Server - Deployment
         * add `index.html`
         * inspect `localhost:3000`
 
-## App talks to Server
+## App Talks to Server
 
 1. Add `services/api.js`
 1. Add `test` method to hit server and return rows
 1. Fetch in `App.vue` and display via `{{results}}`
 1. Test it out
+
+## App Builds to Server
+
+1. run `npm run build` and inspect `dist`
+1. Add new `script` in `package.json`:
+    * `"build:prod": "npm run build && rm -rf ../project-server/public && cp -R dist ../project-server/public"`
+    * (change to correct server folder name)
+1. Go to `localhost:3000` and check that it worked!
 
 ## Deployment
 
