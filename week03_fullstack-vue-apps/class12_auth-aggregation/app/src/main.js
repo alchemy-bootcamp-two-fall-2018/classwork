@@ -17,7 +17,6 @@ Vue.directive('focus', {
 });
 
 new Vue({
-  // step #4: pass in router object
   router,
   render: h => h(App)
 }).$mount('#app');
