@@ -67,6 +67,15 @@ Proxy Server - Deployment
     * `> mkdir lib/routes`
     * Copy template `auth.js` into `routes`
     * (adjust user profile columns as needed to `auth.js`)
+1. Create `.env` and `.env.example`
+    * `DATABASE_URL`
+    * `PORT`
+    * `APP_SECRET`
+    * api keys, etc
+1. Add `require('dotenv').config();` to any file that is a entry point:
+    * `server.js`
+    * db script files
+1. Replace values in code with `process.env.KEY_NAME`
 1. Create database in postgres
     * (local only - deployed will have db already)
 1. Set db name in `db-client`
@@ -77,6 +86,13 @@ Proxy Server - Deployment
     * load seed data
     * do SQL query in "hello world"
     * Test in browser that it works at `localhost:3000`
+1. Add `public` dir
+    * `> mkdir public`
+    * add middleware in `app.js`:
+        * `app.use(express.static('public'));`
+    * Test that it works
+        * add `index.html`
+        * inspect `localhost:3000`
 
 
 ## Deployment
