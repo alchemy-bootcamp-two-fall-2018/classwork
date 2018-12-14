@@ -1,6 +1,14 @@
 # Class 15: Deployment and Proxy
 
+## Agenda
 
+* Kata Review
+* Project Scaffolding Follow Up
+* Deployment
+* Proxy
+* BREAK
+* Project Examples
+* Project Teams
 
 ## Deployment
 
