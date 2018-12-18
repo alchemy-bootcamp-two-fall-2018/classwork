@@ -135,6 +135,10 @@ Proxy Server - Deployment
     * `"build:prod": "npm run build && rm -rf ../project-server/public && cp -R dist ../project-server/public"`
     * (change to correct server folder name)
 1. Go to `localhost:3000` and check that it worked!
+1. Note for server's updated `public` folder (which now should have minified code in it from app):
+    * Double-check the `package.json` in the root of your `project-server` and make sure that it says `"test": "npm run lint"` under your `scripts`
+    * Then, in the root of your `project-server` directory, add a new file called `.eslintignore` and add `public` to the first line. This will make ESLint ignore everything in the public directory (so Travis will pass)
+
 
 ## Deployment
 
